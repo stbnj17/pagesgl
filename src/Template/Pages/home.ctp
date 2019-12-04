@@ -1,276 +1,559 @@
-<?php
-/**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
- *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         0.10.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
- */
-use Cake\Cache\Cache;
-use Cake\Core\Configure;
-use Cake\Core\Plugin;
-use Cake\Datasource\ConnectionManager;
-use Cake\Error\Debugger;
-use Cake\Http\Exception\NotFoundException;
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <h1>
+    Dashboard
+    <small>Control panel</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li class="active">Dashboard</li>
+  </ol>
+</section>
 
-$this->layout = false;
+<!-- Main content -->
+<section class="content">
+  <!-- Small boxes (Stat box) -->
+  <div class="row">
+    <div class="col-lg-3 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-aqua">
+        <div class="inner">
+          <h3>150</h3>
 
-if (!Configure::read('debug')) :
-    throw new NotFoundException(
-        'Please replace src/Template/Pages/home.ctp with your own version or re-enable debug mode.'
-    );
-endif;
-
-$cakeDescription = 'CakePHP: the rapid development PHP framework';
-?>
-<!DOCTYPE html>
-<html>
-<head>
-    <?= $this->Html->charset() ?>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>
-        <?= $cakeDescription ?>
-    </title>
-
-    <?= $this->Html->meta('icon') ?>
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('style.css') ?>
-    <?= $this->Html->css('home.css') ?>
-    <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
-</head>
-<body class="home">
-
-<header class="row">
-    <div class="header-image"><?= $this->Html->image('cake.logo.svg') ?></div>
-    <div class="header-title">
-        <h1>Welcome to CakePHP <?= Configure::version() ?> Red Velvet. Build fast. Grow solid.</h1>
-    </div>
-</header>
-
-<div class="row">
-    <div class="columns large-12">
-        <div class="ctp-warning alert text-center">
-            <p>Please be aware that this page will not be shown if you turn off debug mode unless you replace src/Template/Pages/home.ctp with your own version.</p>
+          <p>New Orders</p>
         </div>
-        <div id="url-rewriting-warning" class="alert url-rewriting">
-            <ul>
-                <li class="bullet problem">
-                    URL rewriting is not properly configured on your server.<br />
-                    1) <a target="_blank" href="https://book.cakephp.org/3.0/en/installation.html#url-rewriting">Help me configure it</a><br />
-                    2) <a target="_blank" href="https://book.cakephp.org/3.0/en/development/configuration.html#general-configuration">I don't / can't use URL rewriting</a>
-                </li>
+        <div class="icon">
+          <i class="ion ion-bag"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-green">
+        <div class="inner">
+          <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+          <p>Bounce Rate</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-stats-bars"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-yellow">
+        <div class="inner">
+          <h3>44</h3>
+
+          <p>User Registrations</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-person-add"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-3 col-xs-6">
+      <!-- small box -->
+      <div class="small-box bg-red">
+        <div class="inner">
+          <h3>65</h3>
+
+          <p>Unique Visitors</p>
+        </div>
+        <div class="icon">
+          <i class="ion ion-pie-graph"></i>
+        </div>
+        <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+      </div>
+    </div>
+    <!-- ./col -->
+  </div>
+  <!-- /.row -->
+  <!-- Main row -->
+  <div class="row">
+    <!-- Left col -->
+    <section class="col-lg-7 connectedSortable">
+      <!-- Custom tabs (Charts with tabs)-->
+      <div class="nav-tabs-custom">
+        <!-- Tabs within a box -->
+        <ul class="nav nav-tabs pull-right">
+          <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
+          <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
+          <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
+        </ul>
+        <div class="tab-content no-padding">
+          <!-- Morris chart - Sales -->
+          <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
+          <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
+        </div>
+      </div>
+      <!-- /.nav-tabs-custom -->
+
+      <!-- Chat box -->
+      <div class="box box-success">
+        <div class="box-header">
+          <i class="fa fa-comments-o"></i>
+
+          <h3 class="box-title">Chat</h3>
+
+          <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
+            <div class="btn-group" data-toggle="btn-toggle">
+              <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i>
+              </button>
+              <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
+            </div>
+          </div>
+        </div>
+        <div class="box-body chat" id="chat-box">
+          <!-- chat item -->
+          <div class="item">
+            <?php echo $this->Html->image('user4-128x128.jpg', ['alt' => 'user image', 'class' => 'online']); ?>
+
+            <p class="message">
+              <a href="#" class="name">
+                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
+                Mike Doe
+              </a>
+              I would like to meet you to discuss the latest news about
+              the arrival of the new theme. They say it is going to be one the
+              best themes on the market
+            </p>
+            <div class="attachment">
+              <h4>Attachments:</h4>
+
+              <p class="filename">
+                Theme-thumbnail-image.jpg
+              </p>
+
+              <div class="pull-right">
+                <button type="button" class="btn btn-primary btn-sm btn-flat">Open</button>
+              </div>
+            </div>
+            <!-- /.attachment -->
+          </div>
+          <!-- /.item -->
+          <!-- chat item -->
+          <div class="item">
+            <?php echo $this->Html->image('user3-128x128.jpg', ['alt' => 'user image', 'class' => 'offline']); ?>
+
+            <p class="message">
+              <a href="#" class="name">
+                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
+                Alexander Pierce
+              </a>
+              I would like to meet you to discuss the latest news about
+              the arrival of the new theme. They say it is going to be one the
+              best themes on the market
+            </p>
+          </div>
+          <!-- /.item -->
+          <!-- chat item -->
+          <div class="item">
+            <?php echo $this->Html->image('user2-160x160.jpg', ['alt' => 'user image', 'class' => 'offline']); ?>
+
+            <p class="message">
+              <a href="#" class="name">
+                <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
+                Susan Doe
+              </a>
+              I would like to meet you to discuss the latest news about
+              the arrival of the new theme. They say it is going to be one the
+              best themes on the market
+            </p>
+          </div>
+          <!-- /.item -->
+        </div>
+        <!-- /.chat -->
+        <div class="box-footer">
+          <div class="input-group">
+            <input class="form-control" placeholder="Type message...">
+
+            <div class="input-group-btn">
+              <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.box (chat box) -->
+
+      <!-- TO DO List -->
+      <div class="box box-primary">
+        <div class="box-header">
+          <i class="ion ion-clipboard"></i>
+
+          <h3 class="box-title">To Do List</h3>
+
+          <div class="box-tools pull-right">
+            <ul class="pagination pagination-sm inline">
+              <li><a href="#">&laquo;</a></li>
+              <li><a href="#">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">&raquo;</a></li>
             </ul>
+          </div>
         </div>
-        <?php Debugger::checkSecurityKeys(); ?>
-    </div>
-</div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+          <ul class="todo-list">
+            <li>
+              <!-- drag handle -->
+              <span class="handle">
+                    <i class="fa fa-ellipsis-v"></i>
+                    <i class="fa fa-ellipsis-v"></i>
+                  </span>
+              <!-- checkbox -->
+              <input type="checkbox" value="">
+              <!-- todo text -->
+              <span class="text">Design a nice theme</span>
+              <!-- Emphasis label -->
+              <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
+              <!-- General tools such as edit or delete-->
+              <div class="tools">
+                <i class="fa fa-edit"></i>
+                <i class="fa fa-trash-o"></i>
+              </div>
+            </li>
+            <li>
+                  <span class="handle">
+                    <i class="fa fa-ellipsis-v"></i>
+                    <i class="fa fa-ellipsis-v"></i>
+                  </span>
+              <input type="checkbox" value="">
+              <span class="text">Make the theme responsive</span>
+              <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
+              <div class="tools">
+                <i class="fa fa-edit"></i>
+                <i class="fa fa-trash-o"></i>
+              </div>
+            </li>
+            <li>
+                  <span class="handle">
+                    <i class="fa fa-ellipsis-v"></i>
+                    <i class="fa fa-ellipsis-v"></i>
+                  </span>
+              <input type="checkbox" value="">
+              <span class="text">Let theme shine like a star</span>
+              <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
+              <div class="tools">
+                <i class="fa fa-edit"></i>
+                <i class="fa fa-trash-o"></i>
+              </div>
+            </li>
+            <li>
+                  <span class="handle">
+                    <i class="fa fa-ellipsis-v"></i>
+                    <i class="fa fa-ellipsis-v"></i>
+                  </span>
+              <input type="checkbox" value="">
+              <span class="text">Let theme shine like a star</span>
+              <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
+              <div class="tools">
+                <i class="fa fa-edit"></i>
+                <i class="fa fa-trash-o"></i>
+              </div>
+            </li>
+            <li>
+                  <span class="handle">
+                    <i class="fa fa-ellipsis-v"></i>
+                    <i class="fa fa-ellipsis-v"></i>
+                  </span>
+              <input type="checkbox" value="">
+              <span class="text">Check your messages and notifications</span>
+              <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
+              <div class="tools">
+                <i class="fa fa-edit"></i>
+                <i class="fa fa-trash-o"></i>
+              </div>
+            </li>
+            <li>
+                  <span class="handle">
+                    <i class="fa fa-ellipsis-v"></i>
+                    <i class="fa fa-ellipsis-v"></i>
+                  </span>
+              <input type="checkbox" value="">
+              <span class="text">Let theme shine like a star</span>
+              <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
+              <div class="tools">
+                <i class="fa fa-edit"></i>
+                <i class="fa fa-trash-o"></i>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix no-border">
+          <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
+        </div>
+      </div>
+      <!-- /.box -->
 
-<div class="row">
-    <div class="columns large-6">
-        <h4>Environment</h4>
-        <ul>
-        <?php if (version_compare(PHP_VERSION, '5.6.0', '>=')) : ?>
-            <li class="bullet success">Your version of PHP is 5.6.0 or higher (detected <?= PHP_VERSION ?>).</li>
-        <?php else : ?>
-            <li class="bullet problem">Your version of PHP is too low. You need PHP 5.6.0 or higher to use CakePHP (detected <?= PHP_VERSION ?>).</li>
-        <?php endif; ?>
+      <!-- quick email widget -->
+      <div class="box box-info">
+        <div class="box-header">
+          <i class="fa fa-envelope"></i>
 
-        <?php if (extension_loaded('mbstring')) : ?>
-            <li class="bullet success">Your version of PHP has the mbstring extension loaded.</li>
-        <?php else : ?>
-            <li class="bullet problem">Your version of PHP does NOT have the mbstring extension loaded.</li>
-        <?php endif; ?>
+          <h3 class="box-title">Quick Email</h3>
+          <!-- tools box -->
+          <div class="pull-right box-tools">
+            <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip"
+                    title="Remove">
+              <i class="fa fa-times"></i></button>
+          </div>
+          <!-- /. tools -->
+        </div>
+        <div class="box-body">
+          <form action="#" method="post">
+            <div class="form-group">
+              <input type="email" class="form-control" name="emailto" placeholder="Email to:">
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control" name="subject" placeholder="Subject">
+            </div>
+            <div>
+              <textarea class="textarea" placeholder="Message"
+                        style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="box-footer clearfix">
+          <button type="button" class="pull-right btn btn-default" id="sendEmail">Send
+            <i class="fa fa-arrow-circle-right"></i></button>
+        </div>
+      </div>
 
-        <?php if (extension_loaded('openssl')) : ?>
-            <li class="bullet success">Your version of PHP has the openssl extension loaded.</li>
-        <?php elseif (extension_loaded('mcrypt')) : ?>
-            <li class="bullet success">Your version of PHP has the mcrypt extension loaded.</li>
-        <?php else : ?>
-            <li class="bullet problem">Your version of PHP does NOT have the openssl or mcrypt extension loaded.</li>
-        <?php endif; ?>
+    </section>
+    <!-- /.Left col -->
+    <!-- right col (We are only adding the ID to make the widgets sortable)-->
+    <section class="col-lg-5 connectedSortable">
 
-        <?php if (extension_loaded('intl')) : ?>
-            <li class="bullet success">Your version of PHP has the intl extension loaded.</li>
-        <?php else : ?>
-            <li class="bullet problem">Your version of PHP does NOT have the intl extension loaded.</li>
-        <?php endif; ?>
-        </ul>
-    </div>
-    <div class="columns large-6">
-        <h4>Filesystem</h4>
-        <ul>
-        <?php if (is_writable(TMP)) : ?>
-            <li class="bullet success">Your tmp directory is writable.</li>
-        <?php else : ?>
-            <li class="bullet problem">Your tmp directory is NOT writable.</li>
-        <?php endif; ?>
+      <!-- Map box -->
+      <div class="box box-solid bg-light-blue-gradient">
+        <div class="box-header">
+          <!-- tools box -->
+          <div class="pull-right box-tools">
+            <button type="button" class="btn btn-primary btn-sm daterange pull-right" data-toggle="tooltip"
+                    title="Date range">
+              <i class="fa fa-calendar"></i></button>
+            <button type="button" class="btn btn-primary btn-sm pull-right" data-widget="collapse"
+                    data-toggle="tooltip" title="Collapse" style="margin-right: 5px;">
+              <i class="fa fa-minus"></i></button>
+          </div>
+          <!-- /. tools -->
 
-        <?php if (is_writable(LOGS)) : ?>
-            <li class="bullet success">Your logs directory is writable.</li>
-        <?php else : ?>
-            <li class="bullet problem">Your logs directory is NOT writable.</li>
-        <?php endif; ?>
+          <i class="fa fa-map-marker"></i>
 
-        <?php $settings = Cache::getConfig('_cake_core_'); ?>
-        <?php if (!empty($settings)) : ?>
-            <li class="bullet success">The <em><?= $settings['className'] ?>Engine</em> is being used for core caching. To change the config edit config/app.php</li>
-        <?php else : ?>
-            <li class="bullet problem">Your cache is NOT working. Please check the settings in config/app.php</li>
-        <?php endif; ?>
-        </ul>
-    </div>
-    <hr />
-</div>
+          <h3 class="box-title">
+            Visitors
+          </h3>
+        </div>
+        <div class="box-body">
+          <div id="world-map" style="height: 250px; width: 100%;"></div>
+        </div>
+        <!-- /.box-body-->
+        <div class="box-footer no-border">
+          <div class="row">
+            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+              <div id="sparkline-1"></div>
+              <div class="knob-label">Visitors</div>
+            </div>
+            <!-- ./col -->
+            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+              <div id="sparkline-2"></div>
+              <div class="knob-label">Online</div>
+            </div>
+            <!-- ./col -->
+            <div class="col-xs-4 text-center">
+              <div id="sparkline-3"></div>
+              <div class="knob-label">Exists</div>
+            </div>
+            <!-- ./col -->
+          </div>
+          <!-- /.row -->
+        </div>
+      </div>
+      <!-- /.box -->
 
-<div class="row">
-    <div class="columns large-6">
-        <h4>Database</h4>
-        <?php
-        try {
-            $connection = ConnectionManager::get('default');
-            $connected = $connection->connect();
-        } catch (Exception $connectionError) {
-            $connected = false;
-            $errorMsg = $connectionError->getMessage();
-            if (method_exists($connectionError, 'getAttributes')) :
-                $attributes = $connectionError->getAttributes();
-                if (isset($errorMsg['message'])) :
-                    $errorMsg .= '<br />' . $attributes['message'];
-                endif;
-            endif;
-        }
-        ?>
-        <ul>
-        <?php if ($connected) : ?>
-            <li class="bullet success">CakePHP is able to connect to the database.</li>
-        <?php else : ?>
-            <li class="bullet problem">CakePHP is NOT able to connect to the database.<br /><?= $errorMsg ?></li>
-        <?php endif; ?>
-        </ul>
-    </div>
-    <div class="columns large-6">
-        <h4>DebugKit</h4>
-        <ul>
-        <?php if (Plugin::isLoaded('DebugKit')) : ?>
-            <li class="bullet success">DebugKit is loaded.</li>
-        <?php else : ?>
-            <li class="bullet problem">DebugKit is NOT loaded. You need to either install pdo_sqlite, or define the "debug_kit" connection name.</li>
-        <?php endif; ?>
-        </ul>
-    </div>
-    <hr />
-</div>
+      <!-- solid sales graph -->
+      <div class="box box-solid bg-teal-gradient">
+        <div class="box-header">
+          <i class="fa fa-th"></i>
 
-<div class="row">
-    <div class="columns large-6">
-        <h3>Editing this Page</h3>
-        <ul>
-            <li class="bullet cutlery">To change the content of this page, edit: src/Template/Pages/home.ctp.</li>
-            <li class="bullet cutlery">You can also add some CSS styles for your pages at: webroot/css/.</li>
-        </ul>
-    </div>
-    <div class="columns large-6">
-        <h3>Getting Started</h3>
-        <ul>
-            <li class="bullet book"><a target="_blank" href="https://book.cakephp.org/3.0/en/">CakePHP 3.0 Docs</a></li>
-            <li class="bullet book"><a target="_blank" href="https://book.cakephp.org/3.0/en/tutorials-and-examples/cms/installation.html">The 20 min CMS Tutorial</a></li>
-        </ul>
-    </div>
-</div>
+          <h3 class="box-title">Sales Graph</h3>
 
-<div class="row">
-    <div class="columns large-12 text-center">
-        <h3 class="more">More about Cake</h3>
-        <p>
-            CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Front Controller and MVC.<br />
-            Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility.
-        </p>
-    </div>
-    <hr/>
-</div>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+            </button>
+          </div>
+        </div>
+        <div class="box-body border-radius-none">
+          <div class="chart" id="line-chart" style="height: 250px;"></div>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer no-border">
+          <div class="row">
+            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+              <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60"
+                     data-fgColor="#39CCCC">
 
-<div class="row">
-    <div class="columns large-4">
-        <i class="icon support">P</i>
-        <h3>Help and Bug Reports</h3>
-        <ul>
-            <li class="bullet cutlery">
-                <a href="irc://irc.freenode.net/cakephp">irc.freenode.net #cakephp</a>
-                <ul><li>Live chat about CakePHP</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="http://cakesf.herokuapp.com/">Slack</a>
-                <ul><li>CakePHP Slack support</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://github.com/cakephp/cakephp/issues">CakePHP Issues</a>
-                <ul><li>CakePHP issues and pull requests</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="http://discourse.cakephp.org/">CakePHP Forum</a>
-                <ul><li>CakePHP official discussion forum</li></ul>
-            </li>
-        </ul>
-    </div>
-    <div class="columns large-4">
-        <i class="icon docs">r</i>
-        <h3>Docs and Downloads</h3>
-        <ul>
-            <li class="bullet cutlery">
-                <a href="https://api.cakephp.org/3.0/">CakePHP API</a>
-                <ul><li>Quick Reference</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://book.cakephp.org/3.0/en/">CakePHP Documentation</a>
-                <ul><li>Your Rapid Development Cookbook</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://bakery.cakephp.org">The Bakery</a>
-                <ul><li>Everything CakePHP</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://plugins.cakephp.org">CakePHP plugins repo</a>
-                <ul><li>A comprehensive list of all CakePHP plugins created by the community</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://github.com/cakephp/">CakePHP Code</a>
-                <ul><li>For the Development of CakePHP Git repository, Downloads</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://github.com/FriendsOfCake/awesome-cakephp">CakePHP Awesome List</a>
-                <ul><li>A curated list of amazingly awesome CakePHP plugins, resources and shiny things.</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://www.cakephp.org">CakePHP</a>
-                <ul><li>The Rapid Development Framework</li></ul>
-            </li>
-        </ul>
-    </div>
-    <div class="columns large-4">
-        <i class="icon training">s</i>
-        <h3>Training and Certification</h3>
-        <ul>
-            <li class="bullet cutlery">
-                <a href="https://cakefoundation.org/">Cake Software Foundation</a>
-                <ul><li>Promoting development related to CakePHP</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://training.cakephp.org/">CakePHP Training</a>
-                <ul><li>Learn to use the CakePHP framework</li></ul>
-            </li>
-            <li class="bullet cutlery">
-                <a href="https://certification.cakephp.org/">CakePHP Certification</a>
-                <ul><li>Become a certified CakePHP developer</li></ul>
-            </li>
-        </ul>
-    </div>
-</div>
+              <div class="knob-label">Mail-Orders</div>
+            </div>
+            <!-- ./col -->
+            <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
+              <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60"
+                     data-fgColor="#39CCCC">
 
-</body>
-</html>
+              <div class="knob-label">Online</div>
+            </div>
+            <!-- ./col -->
+            <div class="col-xs-4 text-center">
+              <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60"
+                     data-fgColor="#39CCCC">
+
+              <div class="knob-label">In-Store</div>
+            </div>
+            <!-- ./col -->
+          </div>
+          <!-- /.row -->
+        </div>
+        <!-- /.box-footer -->
+      </div>
+      <!-- /.box -->
+
+      <!-- Calendar -->
+      <div class="box box-solid bg-green-gradient">
+        <div class="box-header">
+          <i class="fa fa-calendar"></i>
+
+          <h3 class="box-title">Calendar</h3>
+          <!-- tools box -->
+          <div class="pull-right box-tools">
+            <!-- button with a dropdown -->
+            <div class="btn-group">
+              <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
+                <i class="fa fa-bars"></i></button>
+              <ul class="dropdown-menu pull-right" role="menu">
+                <li><a href="#">Add new event</a></li>
+                <li><a href="#">Clear events</a></li>
+                <li class="divider"></li>
+                <li><a href="#">View calendar</a></li>
+              </ul>
+            </div>
+            <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
+            </button>
+          </div>
+          <!-- /. tools -->
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+          <!--The calendar -->
+          <div id="calendar" style="width: 100%"></div>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer text-black">
+          <div class="row">
+            <div class="col-sm-6">
+              <!-- Progress bars -->
+              <div class="clearfix">
+                <span class="pull-left">Task #1</span>
+                <small class="pull-right">90%</small>
+              </div>
+              <div class="progress xs">
+                <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
+              </div>
+
+              <div class="clearfix">
+                <span class="pull-left">Task #2</span>
+                <small class="pull-right">70%</small>
+              </div>
+              <div class="progress xs">
+                <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
+              </div>
+            </div>
+            <!-- /.col -->
+            <div class="col-sm-6">
+              <div class="clearfix">
+                <span class="pull-left">Task #3</span>
+                <small class="pull-right">60%</small>
+              </div>
+              <div class="progress xs">
+                <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
+              </div>
+
+              <div class="clearfix">
+                <span class="pull-left">Task #4</span>
+                <small class="pull-right">40%</small>
+              </div>
+              <div class="progress xs">
+                <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
+              </div>
+            </div>
+            <!-- /.col -->
+          </div>
+          <!-- /.row -->
+        </div>
+      </div>
+      <!-- /.box -->
+
+    </section>
+    <!-- right col -->
+  </div>
+  <!-- /.row (main row) -->
+
+</section>
+<!-- /.content -->
+
+
+ <!-- Morris chart -->
+  <?php echo $this->Html->css('AdminLTE./bower_components/morris.js/morris', ['block' => 'css']); ?>
+  <!-- jvectormap -->
+  <?php echo $this->Html->css('AdminLTE./bower_components/jvectormap/jquery-jvectormap', ['block' => 'css']); ?>
+  <!-- Date Picker -->
+  <?php echo $this->Html->css('AdminLTE./bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min', ['block' => 'css']); ?>
+  <!-- Daterange picker -->
+  <?php echo $this->Html->css('AdminLTE./bower_components/bootstrap-daterangepicker/daterangepicker', ['block' => 'css']); ?>
+  <!-- bootstrap wysihtml5 - text editor -->
+  <?php echo $this->Html->css('AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min', ['block' => 'css']); ?>
+
+<!-- jQuery UI 1.11.4 -->
+<?php echo $this->Html->script('AdminLTE./bower_components/jquery-ui/jquery-ui.min', ['block' => 'script']); ?>
+<!-- Morris.js charts -->
+<?php echo $this->Html->script('AdminLTE./bower_components/raphael/raphael.min', ['block' => 'script']); ?>
+<?php echo $this->Html->script('AdminLTE./bower_components/morris.js/morris.min', ['block' => 'script']); ?>
+<!-- Sparkline -->
+<?php echo $this->Html->script('AdminLTE./bower_components/jquery-sparkline/dist/jquery.sparkline.min', ['block' => 'script']); ?>
+<!-- jvectormap -->
+<?php echo $this->Html->script('AdminLTE./plugins/jvectormap/jquery-jvectormap-1.2.2.min', ['block' => 'script']); ?>
+<?php echo $this->Html->script('AdminLTE./plugins/jvectormap/jquery-jvectormap-world-mill-en', ['block' => 'script']); ?>
+<!-- jQuery Knob Chart -->
+<?php echo $this->Html->script('AdminLTE./bower_components/jquery-knob/dist/jquery.knob.min', ['block' => 'script']); ?>
+<!-- daterangepicker -->
+<?php echo $this->Html->script('AdminLTE./bower_components/moment/min/moment.min', ['block' => 'script']); ?>
+<?php echo $this->Html->script('AdminLTE./bower_components/bootstrap-daterangepicker/daterangepicker', ['block' => 'script']); ?>
+<!-- datepicker -->
+<?php echo $this->Html->script('AdminLTE./bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min', ['block' => 'script']); ?>
+<!-- Bootstrap WYSIHTML5 -->
+<?php echo $this->Html->script('AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min', ['block' => 'script']); ?>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<?php echo $this->Html->script('AdminLTE.pages/dashboard', ['block' => 'script']); ?>
+<!-- AdminLTE for demo purposes -->
+<?php echo $this->Html->script('AdminLTE.demo', ['block' => 'script']); ?>
+
+<?php $this->start('scriptBottom'); ?>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+      $.widget.bridge('uibutton', $.ui.button);
+    </script>
+<?php  $this->end(); ?>
