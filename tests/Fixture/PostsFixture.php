@@ -4,9 +4,9 @@ namespace App\Test\Fixture;
 use Cake\TestSuite\Fixture\TestFixture;
 
 /**
- * UsersFixture
+ * PostsFixture
  */
-class UsersFixture extends TestFixture
+class PostsFixture extends TestFixture
 {
     /**
      * Fields
@@ -16,9 +16,9 @@ class UsersFixture extends TestFixture
     // @codingStandardsIgnoreStart
     public $fields = [
         'id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
-        'name' => ['type' => 'string', 'length' => 200, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
-        'email' => ['type' => 'string', 'length' => 200, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
-        'password' => ['type' => 'string', 'length' => 200, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'title' => ['type' => 'string', 'length' => 200, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'body' => ['type' => 'string', 'length' => 200, 'null' => false, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
+        'user_id' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'created' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         'modified' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
         '_constraints' => [
@@ -40,11 +40,11 @@ class UsersFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'name' => 'Lorem ipsum dolor sit amet',
-                'email' => 'Lorem ipsum dolor sit amet',
-                'password' => 'Lorem ipsum dolor sit amet',
-                'created' => '2019-12-05 16:24:26',
-                'modified' => '2019-12-05 16:24:26'
+                'title' => 'Lorem ipsum dolor sit amet',
+                'body' => 'Lorem ipsum dolor sit amet',
+                'user_id' => 1,
+                'created' => '2019-12-05 16:40:16',
+                'modified' => '2019-12-05 16:40:16'
             ],
         ];
         parent::init();

@@ -56,7 +56,9 @@ class AppController extends Controller
     // Enable Theme AdminLTE
     public function beforeRender(Event $event)
     {
-        /*$this->viewBuilder()->setTheme('AdminLTE');*/
+        $this->viewBuilder()->setTheme('AdminLTE');
+        $this->viewBuilder()->layout('adminlte');
+        $this->viewBuilder()->setClassName('AdminLTE.AdminLTE');
 
         // Before of CakePHP 3.5
         //$this->viewBuilder()->theme('AdminLTE');

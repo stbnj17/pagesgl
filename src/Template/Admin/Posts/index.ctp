@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    <?= __('Users') ?>
+    Posts
 
     <div class="pull-right"><?php echo $this->Html->link(__('New'), ['action' => 'add'], ['class'=>'btn btn-success btn-xs']) ?></div>
   </h1>
@@ -33,27 +33,27 @@
             <thead>
               <tr>
                   <th scope="col"><?= $this->Paginator->sort('id') ?></th>
-                  <th scope="col"><?= $this->Paginator->sort('name') ?></th>
-                  <th scope="col"><?= $this->Paginator->sort('email') ?></th>
-                  <th scope="col"><?= $this->Paginator->sort('password') ?></th>
+                  <th scope="col"><?= $this->Paginator->sort('title') ?></th>
+                  <th scope="col"><?= $this->Paginator->sort('body') ?></th>
+                  <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
                   <th scope="col"><?= $this->Paginator->sort('created') ?></th>
                   <th scope="col"><?= $this->Paginator->sort('modified') ?></th>
                   <th scope="col" class="actions text-center"><?= __('Actions') ?></th>
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($users as $user): ?>
+              <?php foreach ($posts as $post): ?>
                 <tr>
-                  <td><?= $this->Number->format($user->id) ?></td>
-                  <td><?= h($user->name) ?></td>
-                  <td><?= h($user->email) ?></td>
-                  <td><?= h($user->password) ?></td>
-                  <td><?= h($user->created) ?></td>
-                  <td><?= h($user->modified) ?></td>
+                  <td><?= $this->Number->format($post->id) ?></td>
+                  <td><?= h($post->title) ?></td>
+                  <td><?= h($post->body) ?></td>
+                  <td><?= $post->has('user') ? $this->Html->link($post->user->name, ['controller' => 'Users', 'action' => 'view', $post->user->id]) : '' ?></td>
+                  <td><?= h($post->created) ?></td>
+                  <td><?= h($post->modified) ?></td>
                   <td class="actions text-right">
-                      <?= $this->Html->link(__('View'), ['action' => 'view', $user->id], ['class'=>'btn btn-info btn-xs']) ?>
-                      <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id], ['class'=>'btn btn-warning btn-xs']) ?>
-                      <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id), 'class'=>'btn btn-danger btn-xs']) ?>
+                      <?= $this->Html->link(__('View'), ['action' => 'view', $post->id], ['class'=>'btn btn-info btn-xs']) ?>
+                      <?= $this->Html->link(__('Edit'), ['action' => 'edit', $post->id], ['class'=>'btn btn-warning btn-xs']) ?>
+                      <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $post->id], ['confirm' => __('Are you sure you want to delete # {0}?', $post->id), 'class'=>'btn btn-danger btn-xs']) ?>
                   </td>
                 </tr>
               <?php endforeach; ?>
