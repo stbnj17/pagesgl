@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * Posts Model
  *
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
+ * @property \App\Model\Table\ImagesTable&\Cake\ORM\Association\HasMany $Images
  *
  * @method \App\Model\Entity\Post get($primaryKey, $options = [])
  * @method \App\Model\Entity\Post newEntity($data = null, array $options = [])
@@ -43,6 +44,9 @@ class PostsTable extends Table
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
+        ]);
+        $this->hasMany('Images', [
+            'foreignKey' => 'post_id'
         ]);
     }
 

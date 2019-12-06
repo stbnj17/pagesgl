@@ -46,7 +46,7 @@
           <h3 class="box-title"><?= __('Posts') ?></h3>
         </div>
         <!-- /.box-header -->
-        <div class="box-body">
+        <div class="box-body table-responsive">
           <?php if (!empty($user->posts)): ?>
           <table class="table table-hover">
               <tr>
@@ -66,10 +66,10 @@
                     <td><?= h($posts->user_id) ?></td>
                     <td><?= h($posts->created) ?></td>
                     <td><?= h($posts->modified) ?></td>
-                      <td class="actions text-right">
-                      <?= $this->Html->link(__('View'), ['controller' => 'Posts', 'action' => 'view', $posts->id], ['class'=>'btn btn-info btn-xs']) ?>
-                      <?= $this->Html->link(__('Edit'), ['controller' => 'Posts', 'action' => 'edit', $posts->id], ['class'=>'btn btn-warning btn-xs']) ?>
-                      <?= $this->Form->postLink(__('Delete'), ['controller' => 'Posts', 'action' => 'delete', $posts->id], ['confirm' => __('Are you sure you want to delete # {0}?', $posts->id), 'class'=>'btn btn-danger btn-xs']) ?>
+                      <td class="actions text-center">
+                      <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fa fa-eye']), ['controller' => 'Posts', 'action' => 'view', $posts->id], ['class'=>'btn btn-info btn-xs', 'title' => __('View'), 'escape' => false]) ?>
+                      <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fa fa-pencil']), ['controller' => 'Posts', 'action' => 'edit', $posts->id], ['class'=>'btn btn-warning btn-xs', 'title' => __('Edit'), 'escape' => false]) ?>
+                      <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fa fa-trash']), ['controller' => 'Posts', 'action' => 'delete', $posts->id], ['confirm' => __('Are you sure you want to delete # {0}?', $posts->id), 'class'=>'btn btn-danger btn-xs', 'title' => __('Delete'), 'escape' => false]) ?>
                   </td>
               </tr>
               <?php endforeach; ?>

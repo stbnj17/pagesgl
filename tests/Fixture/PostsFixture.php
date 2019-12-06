@@ -43,8 +43,8 @@ class PostsFixture extends TestFixture
                 'title' => 'Lorem ipsum dolor sit amet',
                 'body' => 'Lorem ipsum dolor sit amet',
                 'user_id' => 1,
-                'created' => '2019-12-05 16:40:16',
-                'modified' => '2019-12-05 16:40:16'
+                'created' => '2019-12-06 16:48:51',
+                'modified' => '2019-12-06 16:48:51'
             ],
         ];
         parent::init();

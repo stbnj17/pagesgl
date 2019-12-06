@@ -1,21 +1,21 @@
 <?php
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\PostsTable;
+use App\Model\Table\ImagesTable;
 use Cake\ORM\TableRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\PostsTable Test Case
+ * App\Model\Table\ImagesTable Test Case
  */
-class PostsTableTest extends TestCase
+class ImagesTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\PostsTable
+     * @var \App\Model\Table\ImagesTable
      */
-    public $Posts;
+    public $Images;
 
     /**
      * Fixtures
@@ -23,9 +23,8 @@ class PostsTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Posts',
-        'app.Users',
-        'app.Images'
+        'app.Images',
+        'app.Posts'
     ];
 
     /**
@@ -36,8 +35,8 @@ class PostsTableTest extends TestCase
     public function setUp()
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Posts') ? [] : ['className' => PostsTable::class];
-        $this->Posts = TableRegistry::getTableLocator()->get('Posts', $config);
+        $config = TableRegistry::getTableLocator()->exists('Images') ? [] : ['className' => ImagesTable::class];
+        $this->Images = TableRegistry::getTableLocator()->get('Images', $config);
     }
 
     /**
@@ -47,7 +46,7 @@ class PostsTableTest extends TestCase
      */
     public function tearDown()
     {
-        unset($this->Posts);
+        unset($this->Images);
 
         parent::tearDown();
     }
