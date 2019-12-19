@@ -25,7 +25,7 @@ class UsersFixture extends TestFixture
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
         ],
         '_options' => [
-            'engine' => 'MyISAM',
+            'engine' => 'InnoDB',
             'collation' => 'utf8_general_ci'
         ],
     ];
@@ -43,8 +43,8 @@ class UsersFixture extends TestFixture
                 'name' => 'Lorem ipsum dolor sit amet',
                 'email' => 'Lorem ipsum dolor sit amet',
                 'password' => 'Lorem ipsum dolor sit amet',
-                'created' => '2019-12-06 16:47:08',
-                'modified' => '2019-12-06 16:47:08'
+                'created' => '2019-12-10 12:28:08',
+                'modified' => '2019-12-10 12:28:08'
             ],
         ];
         parent::init();
