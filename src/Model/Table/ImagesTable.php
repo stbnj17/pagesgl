@@ -41,8 +41,7 @@ class ImagesTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Posts', [
-            'foreignKey' => 'post_id',
-            'joinType' => 'INNER'
+            'foreignKey' => 'post_id'
         ]);
     }
 
@@ -61,6 +60,10 @@ class ImagesTable extends Table
         $validator
             ->requirePresence('image', 'create')
             ->notEmptyFile('image');
+
+        $validator
+            ->integer('deleted')
+            ->allowEmptyString('deleted');
 
         return $validator;
     }

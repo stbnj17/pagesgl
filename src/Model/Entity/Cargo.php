@@ -4,20 +4,17 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Post Entity
+ * Cargo Entity
  *
  * @property int $id
- * @property string $title
- * @property string $body
- * @property int|null $user_id
- * @property \Cake\I18n\FrozenTime $created
- * @property \Cake\I18n\FrozenTime $modified
+ * @property string|null $cargo
+ * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\FrozenTime|null $modified
  * @property int|null $deleted
  *
- * @property \App\Model\Entity\User $user
- * @property \App\Model\Entity\Image[] $images
+ * @property \App\Model\Entity\Empleado[] $empleados
  */
-class Post extends Entity
+class Cargo extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -29,13 +26,10 @@ class Post extends Entity
      * @var array
      */
     protected $_accessible = [
-        'title' => true,
-        'body' => true,
-        'user_id' => true,
+        'cargo' => true,
         'created' => true,
         'modified' => true,
         'deleted' => true,
-        'user' => true,
-        'images' => true
+        'empleados' => true
     ];
 }

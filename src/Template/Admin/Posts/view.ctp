@@ -53,8 +53,6 @@
                     <th scope="col"><?= __('Id') ?></th>
                     <th scope="col"><?= __('Post Id') ?></th>
                     <th scope="col"><?= __('Image') ?></th>
-                    <th scope="col"><?= __('Created') ?></th>
-                    <th scope="col"><?= __('Modified') ?></th>
                     <th scope="col" class="actions text-center"><?= __('Actions') ?></th>
               </tr>
               <?php foreach ($post->images as $images): ?>
@@ -62,12 +60,10 @@
                     <td><?= h($images->id) ?></td>
                     <td><?= h($images->post_id) ?></td>
                     <td><?= h(stream_get_contents($images->image)) ?></td>
-                    <td><?= h($images->created) ?></td>
-                    <td><?= h($images->modified) ?></td>
                       <td class="actions text-center">
                       <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fa fa-eye']), ['controller' => 'Images', 'action' => 'view', $images->id], ['class'=>'btn btn-info btn-xs', 'title' => __('View'), 'escape' => false]) ?>
                       <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fa fa-pencil']), ['controller' => 'Images', 'action' => 'edit', $images->id], ['class'=>'btn btn-warning btn-xs', 'title' => __('Edit'), 'escape' => false]) ?>
-                      <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fa fa-trash']), ['controller' => 'Images', 'action' => 'delete', $images->id], ['confirm' => __('Are you sure you want to delete # {0}?', $images->id), 'class'=>'btn btn-danger btn-xs', 'title' => __('Delete'), 'escape' => false]) ?>
+                      <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fa fa-remove']), ['controller' => 'Images', 'action' => 'remove', $images->id], ['confirm' => __('Are you sure you want to remove # {0}?', $images->id), 'class'=>'btn btn-danger btn-xs', 'title' => __('Remove'), 'escape' => false]) ?>
                   </td>
               </tr>
               <?php endforeach; ?>

@@ -1,14 +1,14 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\User $user
+ * @var \App\Model\Entity\Cargo $cargo
  */
 ?>
 <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      User
-      <small><?php echo __('Add'); ?></small>
+      Cargo
+      <small><?php echo __('Edit'); ?></small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo $this->Url->build(['action' => 'index']); ?>"><i class="fa fa-dashboard"></i> <?php echo __('Home'); ?></a></li>
@@ -26,12 +26,10 @@
           </div>
           <!-- /.box-header -->
           <!-- form start -->
-          <?php echo $this->Form->create($user, ['role' => 'form']); ?>
+          <?php echo $this->Form->create($cargo, ['role' => 'form']); ?>
             <div class="box-body">
               <?php
-                echo $this->Form->control('name');
-                echo $this->Form->control('email');
-                echo $this->Form->control('password');
+                echo $this->Form->control('cargo');
               ?>
             </div>
             <!-- /.box-body -->

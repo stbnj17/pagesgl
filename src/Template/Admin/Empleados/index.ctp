@@ -1,7 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Images
+    Empleados
 
     <div class="pull-right"><?php echo $this->Html->link(__('New'), ['action' => 'add'], ['class'=>'btn btn-success btn-sm']) ?></div>
   </h1>
@@ -21,20 +21,24 @@
             <thead>
               <tr>
                   <th scope="col" class="text-center"><?= __('id') ?></th>
-                  <th scope="col" class="text-center"><?= __('post_id') ?></th>
+                  <th scope="col" class="text-center"><?= __('area_id') ?></th>
+                  <th scope="col" class="text-center"><?= __('cargo_id') ?></th>
+                  <th scope="col" class="text-center"><?= __('empleado') ?></th>
                   <th scope="col" class="actions text-center"><?= __('Actions') ?></th>
               </tr>
             </thead>
             <tbody>
-              <?php foreach ($images as $image): ?>
+              <?php foreach ($empleados as $empleado): ?>
                 <tr>
-                  <td><?= $this->Number->format($image->id) ?></td>
-                  <td><?= $image->has('post') ? $this->Html->link($image->post->title, ['controller' => 'Posts', 'action' => 'view', $image->post->id]) : '' ?></td>
+                  <td><?= $this->Number->format($empleado->id) ?></td>
+                  <td><?= $empleado->has('area') ? $this->Html->link($empleado->area->area, ['controller' => 'Areas', 'action' => 'view', $empleado->area->id]) : '' ?></td>
+                  <td><?= $empleado->has('cargo') ? $this->Html->link($empleado->cargo->cargo, ['controller' => 'Cargos', 'action' => 'view', $empleado->cargo->id]) : '' ?></td>
+                  <td><?= h($empleado->empleado) ?></td>
                   <td class="actions text-center">
-                      <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fa fa-eye']), ['action' => 'view', $image->id], ['class'=>'btn btn-info btn-xs', 'title' => __('View'), 'escape' => false]) ?>
-                      <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fa fa-pencil']), ['action' => 'edit', $image->id], ['class'=>'btn btn-warning btn-xs', 'title' => __('Edit'), 'escape' => false]) ?>
-                      <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fa fa-remove']), ['action' => 'remove', $image->id], ['confirm' => __('Are you sure you want to remove # {0}?', $image->id), 'class'=>'btn btn-danger btn-xs', 'title' => __('Remove'), 'escape' => false]) ?>
-                      <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fa fa-trash-o']), ['action' => 'delete', $image->id], ['confirm' => __('Are you sure you want to delete # {0}?', $image->id), 'class'=>'btn bg-black btn-xs', 'title' => __('Delete'), 'escape' => false]) ?>
+                      <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fa fa-eye']), ['action' => 'view', $empleado->id], ['class'=>'btn btn-info btn-xs', 'title' => __('View'), 'escape' => false]) ?>
+                      <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fa fa-pencil']), ['action' => 'edit', $empleado->id], ['class'=>'btn btn-warning btn-xs', 'title' => __('Edit'), 'escape' => false]) ?>
+                      <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fa fa-remove']), ['action' => 'remove', $empleado->id], ['confirm' => __('Are you sure you want to remove # {0}?', $empleado->id), 'class'=>'btn btn-danger btn-xs', 'title' => __('Remove'), 'escape' => false]) ?>
+                      <?= $this->Form->postLink($this->Html->tag('i', '', ['class' => 'fa fa-trash-o']), ['action' => 'delete', $empleado->id], ['confirm' => __('Are you sure you want to delete # {0}?', $empleado->id), 'class'=>'btn bg-black btn-xs', 'title' => __('Delete'), 'escape' => false]) ?>
                   </td>
                 </tr>
               <?php endforeach; ?>

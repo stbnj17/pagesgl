@@ -22,7 +22,7 @@ class ImagesController extends AppController
         $this->paginate = [
             'contain' => ['Posts']
         ];
-        $images = $this->paginate($this->Images);
+        $images = $this->paginate($this->Images->find('all', ['conditions' => 'Images.deleted IS NULL']));
 
         $this->set(compact('images'));
     }
@@ -110,5 +110,29 @@ class ImagesController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+
+    /**
+     * Remove method
+     *
+     * @param string|null $id Image id.
+     * @return \Cake\Http\Response|null Redirects on successful remove, renders view otherwise.
+     * @throws \Cake\Network\Exception\NotFoundException When record not found.
+     */
+    public function remove($id = null)
+    {
+        $image = $this->Images->get($id);
+        $image->deleted = 1;
+
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            if ($this->Images->save($image)) {
+                $this->Flash->success(__('The {0} has been removed.', 'Image'));
+            } else {
+                $this->Flash->error(__('The {0} could not be removed. Please, try again.', 'Image'));
+            }
+
+            return $this->redirect(['action' => 'index']);
+        }
     }
 }

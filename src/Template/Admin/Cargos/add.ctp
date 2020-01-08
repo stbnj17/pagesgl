@@ -1,13 +1,13 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\User $user
+ * @var \App\Model\Entity\Cargo $cargo
  */
 ?>
 <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      User
+      Cargo
       <small><?php echo __('Add'); ?></small>
     </h1>
     <ol class="breadcrumb">
@@ -26,12 +26,10 @@
           </div>
           <!-- /.box-header -->
           <!-- form start -->
-          <?php echo $this->Form->create($user, ['role' => 'form']); ?>
+          <?php echo $this->Form->create($cargo, ['role' => 'form']); ?>
             <div class="box-body">
               <?php
-                echo $this->Form->control('name');
-                echo $this->Form->control('email');
-                echo $this->Form->control('password');
+                echo $this->Form->control('cargo');
               ?>
             </div>
             <!-- /.box-body -->

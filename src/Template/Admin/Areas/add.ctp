@@ -1,13 +1,13 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\User $user
+ * @var \App\Model\Entity\Area $area
  */
 ?>
 <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      User
+      Area
       <small><?php echo __('Add'); ?></small>
     </h1>
     <ol class="breadcrumb">
@@ -26,12 +26,12 @@
           </div>
           <!-- /.box-header -->
           <!-- form start -->
-          <?php echo $this->Form->create($user, ['role' => 'form']); ?>
+          <?php echo $this->Form->create($area, ['role' => 'form']); ?>
             <div class="box-body">
               <?php
-                echo $this->Form->control('name');
-                echo $this->Form->control('email');
-                echo $this->Form->control('password');
+                echo $this->Form->control('area_id', ['options' => $areas, 'empty' => 'Selecciona un opción', 'class' => 'form-control select2', 'style' => 'width: 100%']);
+                echo $this->Form->control('area');
+                echo $this->Form->control('deleted');
               ?>
             </div>
             <!-- /.box-body -->

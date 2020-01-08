@@ -74,6 +74,10 @@ class UsersTable extends Table
             ->requirePresence('password', 'create')
             ->notEmptyString('password');
 
+        $validator
+            ->integer('deleted')
+            ->allowEmptyString('deleted');
+
         return $validator;
     }
 

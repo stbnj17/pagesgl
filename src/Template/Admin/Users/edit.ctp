@@ -45,3 +45,17 @@
   </div>
   <!-- /.row -->
 </section>
+
+<!-- Select2 -->
+<?php echo $this->Html->css('AdminLTE./bower_components/select2/dist/css/select2.min', ['block' => 'css']); ?>
+
+<!-- Select2 -->
+<?php echo $this->Html->script('AdminLTE./bower_components/select2/dist/js/select2.full.min', ['block' => 'script']); ?>
+
+<?php $this->start('scriptBottom'); ?>
+<script>
+  $(document).ready(function() {
+    $('.select2').select2();
+});
+</script>
+<?php $this->end(); ?>

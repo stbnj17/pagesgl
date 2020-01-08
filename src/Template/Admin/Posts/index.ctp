@@ -24,8 +24,6 @@
                   <th scope="col" class="text-center"><?= __('title') ?></th>
                   <th scope="col" class="text-center"><?= __('body') ?></th>
                   <th scope="col" class="text-center"><?= __('user_id') ?></th>
-                  <th scope="col" class="text-center"><?= __('created') ?></th>
-                  <th scope="col" class="text-center"><?= __('modified') ?></th>
                   <th scope="col" class="actions text-center"><?= __('Actions') ?></th>
               </tr>
             </thead>
@@ -36,8 +34,6 @@
                   <td><?= h($post->title) ?></td>
                   <td><?= h($post->body) ?></td>
                   <td><?= $post->has('user') ? $this->Html->link($post->user->name, ['controller' => 'Users', 'action' => 'view', $post->user->id]) : '' ?></td>
-                  <td><?= h($post->created) ?></td>
-                  <td><?= h($post->modified) ?></td>
                   <td class="actions text-center">
                       <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fa fa-eye']), ['action' => 'view', $post->id], ['class'=>'btn btn-info btn-xs', 'title' => __('View'), 'escape' => false]) ?>
                       <?= $this->Html->link($this->Html->tag('i', '', ['class' => 'fa fa-pencil']), ['action' => 'edit', $post->id], ['class'=>'btn btn-warning btn-xs', 'title' => __('Edit'), 'escape' => false]) ?>

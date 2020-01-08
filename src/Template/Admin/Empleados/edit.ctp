@@ -1,14 +1,14 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\User $user
+ * @var \App\Model\Entity\Empleado $empleado
  */
 ?>
 <!-- Content Header (Page header) -->
   <section class="content-header">
     <h1>
-      User
-      <small><?php echo __('Add'); ?></small>
+      Empleado
+      <small><?php echo __('Edit'); ?></small>
     </h1>
     <ol class="breadcrumb">
       <li><a href="<?php echo $this->Url->build(['action' => 'index']); ?>"><i class="fa fa-dashboard"></i> <?php echo __('Home'); ?></a></li>
@@ -26,12 +26,12 @@
           </div>
           <!-- /.box-header -->
           <!-- form start -->
-          <?php echo $this->Form->create($user, ['role' => 'form']); ?>
+          <?php echo $this->Form->create($empleado, ['role' => 'form']); ?>
             <div class="box-body">
               <?php
-                echo $this->Form->control('name');
-                echo $this->Form->control('email');
-                echo $this->Form->control('password');
+                echo $this->Form->control('area_id', ['options' => $areas, 'empty' => 'Selecciona un opción', 'class' => 'form-control select2', 'style' => 'width: 100%']);
+                echo $this->Form->control('cargo_id', ['options' => $cargos, 'empty' => 'Selecciona un opción', 'class' => 'form-control select2', 'style' => 'width: 100%']);
+                echo $this->Form->control('empleado');
               ?>
             </div>
             <!-- /.box-body -->

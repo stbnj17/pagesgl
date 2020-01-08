@@ -29,7 +29,7 @@
           <?php echo $this->Form->create($image, ['role' => 'form']); ?>
             <div class="box-body">
               <?php
-                echo $this->Form->control('post_id', ['options' => $posts]);
+                echo $this->Form->control('post_id', ['options' => $posts, 'empty' => 'Selecciona un opción', 'class' => 'form-control select2', 'style' => 'width: 100%']);
               ?>
             </div>
             <!-- /.box-body -->
@@ -43,3 +43,17 @@
   </div>
   <!-- /.row -->
 </section>
+
+<!-- Select2 -->
+<?php echo $this->Html->css('AdminLTE./bower_components/select2/dist/css/select2.min', ['block' => 'css']); ?>
+
+<!-- Select2 -->
+<?php echo $this->Html->script('AdminLTE./bower_components/select2/dist/js/select2.full.min', ['block' => 'script']); ?>
+
+<?php $this->start('scriptBottom'); ?>
+<script>
+  $(document).ready(function() {
+    $('.select2').select2();
+});
+</script>
+<?php $this->end(); ?>

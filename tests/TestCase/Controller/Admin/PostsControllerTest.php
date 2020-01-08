@@ -74,4 +74,14 @@ class PostsControllerTest extends TestCase
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
+
+    /**
+     * Test remove method
+     *
+     * @return void
+     */
+    public function testRemove()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
 }

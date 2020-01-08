@@ -108,33 +108,31 @@ class PostsController extends AppController
         } else {
             $this->Flash->error(__('The {0} could not be deleted. Please, try again.', 'Post'));
         }
-        
+
         return $this->redirect(['action' => 'index']);
     }
+
 
     /**
      * Remove method
      *
      * @param string|null $id Post id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
+     * @return \Cake\Http\Response|null Redirects on successful remove, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function remove($id = null)
     {
         $post = $this->Posts->get($id);
         $post->deleted = 1;
-        
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             if ($this->Posts->save($post)) {
                 $this->Flash->success(__('The {0} has been removed.', 'Post'));
-
-                return $this->redirect(['action' => 'index']);
+            } else {
+                $this->Flash->error(__('The {0} could not be removed. Please, try again.', 'Post'));
             }
-            
-            $this->Flash->error(__('The {0} could not be removed. Please, try again.', 'Post'));
-        }
 
-        $users = $this->Posts->Users->find('list', ['limit' => 200]);
-        $this->set(compact('post', 'users'));
+            return $this->redirect(['action' => 'index']);
+        }
     }
 }

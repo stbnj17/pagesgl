@@ -42,8 +42,7 @@ class PostsTable extends Table
         $this->addBehavior('Timestamp');
 
         $this->belongsTo('Users', [
-            'foreignKey' => 'user_id',
-            'joinType' => 'INNER'
+            'foreignKey' => 'user_id'
         ]);
         $this->hasMany('Images', [
             'foreignKey' => 'post_id'
@@ -73,6 +72,10 @@ class PostsTable extends Table
             ->maxLength('body', 200)
             ->requirePresence('body', 'create')
             ->notEmptyString('body');
+
+        $validator
+            ->integer('deleted')
+            ->allowEmptyString('deleted');
 
         return $validator;
     }

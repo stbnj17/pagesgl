@@ -4,13 +4,13 @@ namespace App\Controller\Admin;
 use App\Controller\AppController;
 
 /**
- * Users Controller
+ * Cargos Controller
  *
- * @property \App\Model\Table\UsersTable $Users
+ * @property \App\Model\Table\CargosTable $Cargos
  *
- * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @method \App\Model\Entity\Cargo[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class UsersController extends AppController
+class CargosController extends AppController
 {
     /**
      * Index method
@@ -19,25 +19,25 @@ class UsersController extends AppController
      */
     public function index()
     {
-        $users = $this->paginate($this->Users->find('all', ['conditions' => 'Users.deleted IS NULL']));
+        $cargos = $this->paginate($this->Cargos->find('all', ['conditions' => 'Cargos.deleted IS NULL']));
 
-        $this->set(compact('users'));
+        $this->set(compact('cargos'));
     }
 
     /**
      * View method
      *
-     * @param string|null $id User id.
+     * @param string|null $id Cargo id.
      * @return \Cake\Http\Response|null
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $user = $this->Users->get($id, [
-            'contain' => ['Posts']
+        $cargo = $this->Cargos->get($id, [
+            'contain' => ['Empleados']
         ]);
 
-        $this->set('user', $user);
+        $this->set('cargo', $cargo);
     }
 
 
@@ -48,60 +48,60 @@ class UsersController extends AppController
      */
     public function add()
     {
-        $user = $this->Users->newEntity();
+        $cargo = $this->Cargos->newEntity();
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The {0} has been saved.', 'User'));
+            $cargo = $this->Cargos->patchEntity($cargo, $this->request->getData());
+            if ($this->Cargos->save($cargo)) {
+                $this->Flash->success(__('The {0} has been saved.', 'Cargo'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The {0} could not be saved. Please, try again.', 'User'));
+            $this->Flash->error(__('The {0} could not be saved. Please, try again.', 'Cargo'));
         }
-        $this->set(compact('user'));
+        $this->set(compact('cargo'));
     }
 
 
     /**
      * Edit method
      *
-     * @param string|null $id User id.
+     * @param string|null $id Cargo id.
      * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $user = $this->Users->get($id, [
+        $cargo = $this->Cargos->get($id, [
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The {0} has been saved.', 'User'));
+            $cargo = $this->Cargos->patchEntity($cargo, $this->request->getData());
+            if ($this->Cargos->save($cargo)) {
+                $this->Flash->success(__('The {0} has been saved.', 'Cargo'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The {0} could not be saved. Please, try again.', 'User'));
+            $this->Flash->error(__('The {0} could not be saved. Please, try again.', 'Cargo'));
         }
-        $this->set(compact('user'));
+        $this->set(compact('cargo'));
     }
 
 
     /**
      * Delete method
      *
-     * @param string|null $id User id.
+     * @param string|null $id Cargo id.
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $user = $this->Users->get($id);
-        if ($this->Users->delete($user)) {
-            $this->Flash->success(__('The {0} has been deleted.', 'User'));
+        $cargo = $this->Cargos->get($id);
+        if ($this->Cargos->delete($cargo)) {
+            $this->Flash->success(__('The {0} has been deleted.', 'Cargo'));
         } else {
-            $this->Flash->error(__('The {0} could not be deleted. Please, try again.', 'User'));
+            $this->Flash->error(__('The {0} could not be deleted. Please, try again.', 'Cargo'));
         }
 
         return $this->redirect(['action' => 'index']);
@@ -111,20 +111,20 @@ class UsersController extends AppController
     /**
      * Remove method
      *
-     * @param string|null $id User id.
+     * @param string|null $id Cargo id.
      * @return \Cake\Http\Response|null Redirects on successful remove, renders view otherwise.
      * @throws \Cake\Network\Exception\NotFoundException When record not found.
      */
     public function remove($id = null)
     {
-        $user = $this->Users->get($id);
-        $user->deleted = 1;
+        $cargo = $this->Cargos->get($id);
+        $cargo->deleted = 1;
 
         if ($this->request->is(['patch', 'post', 'put'])) {
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The {0} has been removed.', 'User'));
+            if ($this->Cargos->save($cargo)) {
+                $this->Flash->success(__('The {0} has been removed.', 'Cargo'));
             } else {
-                $this->Flash->error(__('The {0} could not be removed. Please, try again.', 'User'));
+                $this->Flash->error(__('The {0} could not be removed. Please, try again.', 'Cargo'));
             }
 
             return $this->redirect(['action' => 'index']);

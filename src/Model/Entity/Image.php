@@ -7,10 +7,11 @@ use Cake\ORM\Entity;
  * Image Entity
  *
  * @property int $id
- * @property int $post_id
+ * @property int|null $post_id
  * @property string|resource $image
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $modified
+ * @property int|null $deleted
  *
  * @property \App\Model\Entity\Post $post
  */
@@ -30,6 +31,7 @@ class Image extends Entity
         'image' => true,
         'created' => true,
         'modified' => true,
+        'deleted' => true,
         'post' => true
     ];
 }

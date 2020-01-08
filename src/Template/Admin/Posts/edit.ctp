@@ -31,7 +31,7 @@
               <?php
                 echo $this->Form->control('title');
                 echo $this->Form->control('body');
-                echo $this->Form->control('user_id', ['options' => $users]);
+                echo $this->Form->control('user_id', ['options' => $users, 'empty' => 'Selecciona un opción', 'class' => 'form-control select2', 'style' => 'width: 100%']);
               ?>
             </div>
             <!-- /.box-body -->
@@ -45,3 +45,17 @@
   </div>
   <!-- /.row -->
 </section>
+
+<!-- Select2 -->
+<?php echo $this->Html->css('AdminLTE./bower_components/select2/dist/css/select2.min', ['block' => 'css']); ?>
+
+<!-- Select2 -->
+<?php echo $this->Html->script('AdminLTE./bower_components/select2/dist/js/select2.full.min', ['block' => 'script']); ?>
+
+<?php $this->start('scriptBottom'); ?>
+<script>
+  $(document).ready(function() {
+    $('.select2').select2();
+});
+</script>
+<?php $this->end(); ?>
